@@ -1,0 +1,17 @@
+.title {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-top: 2rem;
+}
+.chatBar {
+  margin-top: 2rem;
+  width: 40rem;
+}
+.result {
+  background: #ddeeff;
+  border-radius: 10px;
+  font-size: 1.2em;
+  margin: 30px 20px 0px 20px;
+  padding: 16px;
+  width: 600px;
+}
