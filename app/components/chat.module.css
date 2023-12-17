@@ -7,6 +7,15 @@
   margin-top: 2rem;
   width: 40rem;
 }
+
+.lastQuestion {
+  background: #ddffee;
+  border-radius: 10px;
+  font-size: 1.2em;
+  margin: 30px 20px 0px 20px;
+  padding: 16px;
+  width: 600px;
+}
 .result {
   background: #ddeeff;
   border-radius: 10px;

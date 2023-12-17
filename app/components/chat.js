@@ -4,6 +4,7 @@ import TextField from '@mui/material/TextField';
 
 export default function Chat() {
   const [questionInput, setQuestionInput] = useState("");
+  const [lastQuestion, setLastQuestion] = useState();
   const [result, setResult] = useState();
 
   async function handleSubmit(event) {
@@ -25,6 +26,7 @@ export default function Chat() {
       }
 
       setResult(data.result);
+      setLastQuestion("You asked: " + questionInput);
       setQuestionInput("");
     } catch(error) {
       console.error(error);
@@ -46,6 +48,7 @@ export default function Chat() {
           onChange={(e) => setQuestionInput(e.target.value)}
         />
       </form>
+      {lastQuestion && <div className={styles.lastQuestion}>{lastQuestion}</div>}
       {result && <div className={styles.result}>{result}</div>}
     </div>
   )
