@@ -49,6 +49,7 @@ export default function Home() {
         },
         body: JSON.stringify({
           question: questionInput,
+          homeFacts: homeFacts
         }),
       });
 

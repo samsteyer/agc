@@ -16,7 +16,7 @@ export default async function (req, res) {
   }
 
   const question = req.body.question || '';
-  const homeValues = req.body.homeValues || '{}';
+  const homeFacts = req.body.homeFacts || '{}';
   if (question.trim().length === 0) {
     res.status(400).json({
       error: {
@@ -28,7 +28,7 @@ export default async function (req, res) {
 
   try {
     const chatCompletion = await openai.chat.completions.create({
-      messages: [{ role: 'user', content: generatePrompt(question, homeValues) }],
+      messages: [{ role: 'user', content: generatePrompt(question, homeFacts) }],
       model: 'gpt-4',
     });
 
@@ -49,10 +49,13 @@ export default async function (req, res) {
   }
 }
 
-function generatePrompt(question, homeValues) {
+function generatePrompt(question, homeFacts) {
   const capitalizedQuestion = question[0].toUpperCase() + question.slice(1).toLowerCase();
-  const userData = JSON.stringify(homeValues);
-  const returnVal = `Please answer like a general, electrical, or HVAC contractor might. Do not use a salutation at the beginning or end -- this is a conversation, not a letter.
+  const userData = JSON.stringify(homeFacts);
+  const returnVal = `Please answer like a general, electrical, or HVAC contractor might.
+  Do not use a salutation at the beginning or end -- this is a conversation, not a letter.
+  Here's some relevant info on the homeowner's home, in JSON format.
+  Please use if helpful in solving their problem: ${userData}
 
   Thanks!
 
