@@ -8,14 +8,14 @@ import IconButton from '@mui/material/IconButton';
 
 export default function Navbar() {
   return (
-    <Box className={styles.topNav}>
+    <Box className={styles.navBox}>
       <AppBar position="static">
-        <Toolbar>
+        <Toolbar className={styles.topNav}>
           <Typography variant="h6" component="div" className={styles.navItem}>
             Chat
           </Typography>
           <Typography variant="h6" component="div" className={styles.navItem}>
-            Home Facts
+            Login
           </Typography>
         </Toolbar>
       </AppBar>

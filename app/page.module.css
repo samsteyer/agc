@@ -11,11 +11,11 @@
 .leftColumn {
   grid-column-start: 1;
   grid-column-end: 3;
-  margin: 1rem;
+  margin: 2rem;
 }
 .rightColumn {
   grid-column-start: 3;
   grid-column-end: 4;
-  margin: 1rem;
+  margin: 2rem;
 }
 

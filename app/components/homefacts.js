@@ -6,7 +6,7 @@ export default function HomeFacts({ homeFacts }) {
       <h1>Home Facts</h1>
       {homeFacts.map((homeFact) => (
         <div key={homeFact.id}>
-          <h2>{homeFact.title}</h2>
+          <h2>{homeFact.title.replace(homeFact.title[0], homeFact.title[0].toUpperCase())}</h2>
           <p>{homeFact.value}</p>
         </div>
       ))}
