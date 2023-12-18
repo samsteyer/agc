@@ -3,9 +3,9 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import styles from './page.module.css';
-import Navbar from './components/navbar';
-import Chat from './components/chat';
-import HomeFacts from './components/homefacts';
+import Navbar from './components/Navbar';
+import Chat from './components/Chat';
+import HomeFacts from './components/HomeFacts';
 
 export default function Home() {
   const [homeFacts, setHomeFacts] = useState([

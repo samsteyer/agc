@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import styles from './chat.module.css';
+import styles from './Chat.module.css';
 import TextField from '@mui/material/TextField';
 
 export default function Chat() {

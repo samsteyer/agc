@@ -1,10 +1,9 @@
-import styles from './navbar.module.css'
-import AppBar from '@mui/material/AppBar';
+import styles from './NavBar.module.css'
+
 import Box from '@mui/material/Box';
+import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
 
 export default function Navbar() {
   return (

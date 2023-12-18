@@ -1,4 +1,4 @@
-import styles from "./homefacts.module.css";
+import styles from "./HomeFacts.module.css";
 
 export default function HomeFacts({ homeFacts }) {
   return (
