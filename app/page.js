@@ -18,24 +18,64 @@ export default function Home() {
       id: 0,
     },
     {
+      title: "city",
+      value: "San Francisco",
+      id: 1,
+    },
+    {
+      title: "state",
+      value: "California",
+      id: 2,
+    },
+    {
+      title: "country",
+      value: "United States",
+      id: 3,
+    },
+    {
       title: "zip",
       value: "94115",
-      id: 1,
+      id: 4,
     },
     {
       title: "beds",
       value: 5,
-      id: 2,
+      id: 5,
     },
     {
       title: "baths",
       value: 3,
-      id: 3,
+      id: 6,
     },
     {
       title: "sqft",
       value: 3400,
-      id: 4,
+      id: 7,
+    },
+    {
+      title: "roof area (ft)",
+      value: 900,
+      id: 8,
+    },
+    {
+      title: "heating",
+      value: "Forced air, natural gas",
+      id: 9,
+    },
+    {
+      title: "AC",
+      value: "3 electric compressors, SEER 14",
+      id: 10,
+    },
+    {
+      title: "year built",
+      value: 1885,
+      id: 11,
+    },
+    {
+      title: "last remodel",
+      value: 2021,
+      id: 12,
     },
   ]);
 
