@@ -18,7 +18,7 @@ export default function Chat({handleSubmit, questionInput, setQuestionInput, las
           value={questionInput}
           onChange={(e) => setQuestionInput(e.target.value)}
         />
-        <CardActions className={styles.submitButton}>
+        <CardActions className={styles.submitButton} style={{display: "inline"}}>
           <Button size="small" type="submit">Ask</Button>
         </CardActions>
       </form>
