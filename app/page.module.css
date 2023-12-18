@@ -19,4 +19,13 @@
   grid-column-end: 4;
   margin: 2rem;
 }
-
+@media (max-width: 600px) {
+    .container {
+        grid-template-columns: 1fr; /* Change to a single column layout */
+    }
+    .leftColumn, .rightColumn {
+        grid-column-start: 1; /* Start at the first column */
+        grid-column-end: 2; /* End at the second column (which effectively means full width) */
+        margin: 1.5rem 1.5rem 0rem 1.5rem;
+    }
+}

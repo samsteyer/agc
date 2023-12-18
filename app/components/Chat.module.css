@@ -11,20 +11,32 @@
   line-height: 3.5rem;
   margin: 0 0.5rem;
 }
-
 .lastQuestion {
   background: #ddffee;
-  border-radius: 10px;
-  font-size: 1.2em;
-  margin-top: 20px;
-  padding: 16px;
-  width: 100%;
 }
 .result {
   background: #ddeeff;
+}
+.lastQuestion, .result {
   border-radius: 10px;
-  font-size: 1.2em;
-  margin-top: 20px;
+  font-size: 1.2rem;
+  margin-top: 2rem;
   padding: 16px;
   width: 100%;
+}
+@media (max-width: 600px) {
+    .title {
+      font-size: 1.5rem;
+    }
+    .chatBar {
+      width: 100%;
+    }
+    .submitButton {
+      line-height: 3rem;
+      margin: 0;
+    }
+    .lastQuestion, .result {
+      font-size: 1rem;
+      margin-top: 1rem;
+    }
 }
