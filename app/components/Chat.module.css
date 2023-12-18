@@ -4,7 +4,12 @@
   margin: 2rem 0rem;
 }
 .chatBar {
-  width: 100%;
+  width: 80%;
+}
+.submitButton {
+  display: inline;
+  line-height: 3.5rem;
+  margin: 0 0.5rem;
 }
 
 .lastQuestion {
