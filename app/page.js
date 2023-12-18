@@ -8,6 +8,9 @@ import Chat from './components/Chat';
 import HomeFacts from './components/HomeFacts';
 
 export default function Home() {
+  const [questionInput, setQuestionInput] = useState("");
+  const [lastQuestion, setLastQuestion] = useState();
+  const [result, setResult] = useState();
   const [homeFacts, setHomeFacts] = useState([
     {
       title: "address",
@@ -35,12 +38,46 @@ export default function Home() {
       id: 4,
     },
   ]);
+
+  async function handleSubmit(event) {
+    event.preventDefault();
+    try {
+      const response = await fetch("/api/generate", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          question: questionInput,
+        }),
+      });
+
+      const data = await response.json();
+      if (response.status !== 200) {
+        throw data.error || new Error(`Request failed with status ${response.status}`);
+      }
+
+      setResult(data.result);
+      setLastQuestion("You asked: " + questionInput);
+      setQuestionInput("");
+    } catch(error) {
+      console.error(error);
+      alert(error.message);
+    }
+  }
+
   return (
     <main className={styles.main}>
       <Navbar />
       <div className={styles.container}>
         <div className={styles.leftColumn}>
-          <Chat />
+          <Chat
+            handleSubmit={handleSubmit}
+            questionInput={questionInput}
+            setQuestionInput={setQuestionInput}
+            lastQuestion={lastQuestion}
+            result={result}
+          />
         </div>
         <div className={styles.rightColumn}>
           <HomeFacts homeFacts={homeFacts} />
