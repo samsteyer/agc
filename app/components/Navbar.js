@@ -1,4 +1,4 @@
-import styles from './NavBar.module.css'
+import styles from './Navbar.module.css'
 
 import Box from '@mui/material/Box';
 import AppBar from '@mui/material/AppBar';
