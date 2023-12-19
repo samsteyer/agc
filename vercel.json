@@ -1,7 +1,7 @@
 {
   "functions": {
     "api/generate.js": {
-      "maxDuration": 60 // This function can run for a maximum of 60 seconds
+      "maxDuration": 60
     }
   }
 }
