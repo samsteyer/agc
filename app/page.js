@@ -27,7 +27,6 @@ export default function Home() {
             newHomeFacts.push({
               title: key,
               value: data[key],
-              id: index
             });
           }
         });
@@ -87,7 +86,6 @@ export default function Home() {
           newHomeFacts.push({
             title: key,
             value: data[key],
-            id: index
           });
         }
         });
