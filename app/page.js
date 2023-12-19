@@ -66,9 +66,33 @@ export default function Home() {
     }
   }
 
+  const onSelectAddress = async (homeId) => {
+    try {
+      const response = await fetch('/api/get-home/' + homeId);
+      const data = await response.json();
+      const newHomeFacts = [];
+      Object.keys(data).forEach((key, index) => {
+        if (key !== "id") {
+          newHomeFacts.push({
+            title: key,
+            value: data[key],
+            id: index
+          });
+        }
+        });
+        setHomeFacts(newHomeFacts);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      alert(error.message);
+    }
+  };
+
   return (
     <main className={styles.main}>
-      <Navbar />
+      <Navbar 
+        address={homeFacts[0] ? homeFacts[0].value : ""}
+        onSelectAddress={onSelectAddress}
+      />
       <div className={styles.container}>
         <div className={styles.leftColumn}>
           <Chat
