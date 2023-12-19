@@ -23,6 +23,10 @@
   padding: 16px;
   width: 100%;
 }
+.loader {
+  margin: 1rem;
+  width: 100%;
+}
 @media (max-width: 600px) {
     .title {
       font-size: 1.5rem;

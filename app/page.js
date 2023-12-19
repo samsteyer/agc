@@ -14,6 +14,7 @@ export default function Home() {
   const [result, setResult] = useState();
   const [homeFacts, setHomeFacts] = useState([]);
   const [homeList, setHomeList] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   // get the first homes data from the API to display
   useEffect(() => {
@@ -50,6 +51,7 @@ export default function Home() {
 
   async function handleSubmit(event) {
     event.preventDefault();
+    setIsLoading(true);
     try {
       const response = await fetch("/api/generate", {
         method: "POST",
@@ -66,12 +68,13 @@ export default function Home() {
       if (response.status !== 200) {
         throw data.error || new Error(`Request failed with status ${response.status}`);
       }
-
+      setIsLoading(false);
       setResult(data.result);
       setLastQuestion("You asked: " + questionInput);
       setQuestionInput("");
     } catch(error) {
       console.error(error);
+      setIsLoading(false);
       alert(error.message);
     }
   }
@@ -111,6 +114,7 @@ export default function Home() {
             setQuestionInput={setQuestionInput}
             lastQuestion={lastQuestion}
             result={result}
+            isLoading={isLoading}
           />
         </div>
         <div className={styles.rightColumn}>

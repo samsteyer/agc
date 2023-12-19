@@ -3,8 +3,9 @@ import styles from './Chat.module.css';
 import TextField from '@mui/material/TextField';
 import CardActions from '@mui/material/CardActions';
 import Button from '@mui/material/Button';
+import CircularProgress from '@mui/material/CircularProgress';
 
-export default function Chat({handleSubmit, questionInput, setQuestionInput, lastQuestion, result}) {
+export default function Chat({handleSubmit, questionInput, setQuestionInput, lastQuestion, result, isLoading}) {
   return (
     <div>
       <h1 className={styles.title}>
@@ -22,6 +23,7 @@ export default function Chat({handleSubmit, questionInput, setQuestionInput, las
           <Button size="small" type="submit">Ask</Button>
         </CardActions>
       </form>
+      {isLoading && <CircularProgress className={styles.loader}/>}
       {lastQuestion && <div className={styles.lastQuestion}>{lastQuestion}</div>}
       {result && <div className={styles.result}>{result}</div>}
     </div>
