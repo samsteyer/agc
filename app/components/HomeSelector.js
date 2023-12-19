@@ -6,7 +6,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 
-export default function HomeSelector({address, onSelectAddress}) {
+export default function HomeSelector({address, onSelectAddress, homeList}) {
   const handleChange = async (event) => {
     const res = await onSelectAddress(event.target.value);
   };
@@ -30,8 +30,9 @@ export default function HomeSelector({address, onSelectAddress}) {
             '&.Mui-focused .MuiOutlinedInput-notchedOutline': { borderColor: 'white' }
           }}
         >
-          <MenuItem value={"bf74c376-8f44-4870-b894-13fdc2ac194b"} className={styles.menuItem}>1913 Baker St.</MenuItem>
-          <MenuItem value={"92f02e91-4ed7-494f-bd62-a7fb9b36d41a"} className={styles.menuItem}>328 Seadrift Rd.</MenuItem>
+          {homeList.map((home) => (
+            <MenuItem value={home.id} className={styles.menuItem}>{home.address}</MenuItem>
+          ))}
         </Select>
       </FormControl>
     </Box>

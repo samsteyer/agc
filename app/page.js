@@ -13,6 +13,7 @@ export default function Home() {
   const [lastQuestion, setLastQuestion] = useState();
   const [result, setResult] = useState();
   const [homeFacts, setHomeFacts] = useState([]);
+  const [homeList, setHomeList] = useState([]);
 
   // get the first homes data from the API to display
   useEffect(() => {
@@ -36,6 +37,16 @@ export default function Home() {
       }
     };
     fetchHomeData();
+    const listHomes = async () => {
+      try {
+        const response = await fetch('/api/list');
+        const newHomeList = await response.json();
+        setHomeList(newHomeList);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+    listHomes();
   }, []);
 
   async function handleSubmit(event) {
@@ -92,6 +103,7 @@ export default function Home() {
       <Navbar 
         address={homeFacts[0] ? homeFacts[0].value : ""}
         onSelectAddress={onSelectAddress}
+        homeList={homeList}
       />
       <div className={styles.container}>
         <div className={styles.leftColumn}>

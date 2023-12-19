@@ -6,7 +6,7 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 
-export default function Navbar({address, onSelectAddress}) {
+export default function Navbar({address, onSelectAddress, homeList}) {
   return (
     <Box className={styles.navBox}>
       <AppBar position="static">
@@ -19,6 +19,7 @@ export default function Navbar({address, onSelectAddress}) {
               className={styles.navItem}
               address={address}
               onSelectAddress={onSelectAddress}
+              homeList={homeList}
             />
           </Typography>
           <Typography variant="h6" component="div" className={styles.navItem}>

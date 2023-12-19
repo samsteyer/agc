@@ -30,6 +30,22 @@ const homes = [
     ac: "None",
     year_built: 1970,
     last_remodel: 1997
+  },
+  {
+    id: '1fcb6e2e-9e30-11ee-8c90-0242ac120002',
+    address: "3030 Pacific Ave.",
+    city: "San Francisco",
+    state: "CA",
+    country: "United States",
+    zip: "94225",
+    bedrooms: 6,
+    bathrooms: 7,
+    sqft: 7000,
+    roof_area: 1500,
+    heating: "Forced air, natural gas",
+    ac: "None",
+    year_built: 1901,
+    last_remodel: 1995
   }
 ];
 
