@@ -1,5 +1,5 @@
 'use client'
- 
+
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import styles from './page.module.css';
@@ -8,76 +8,35 @@ import Chat from './components/Chat';
 import HomeFacts from './components/HomeFacts';
 
 export default function Home() {
+  // set state vars
   const [questionInput, setQuestionInput] = useState("");
   const [lastQuestion, setLastQuestion] = useState();
   const [result, setResult] = useState();
-  const [homeFacts, setHomeFacts] = useState([
-    {
-      title: "address",
-      value: "1913 Baker St.",
-      id: 0,
-    },
-    {
-      title: "city",
-      value: "San Francisco",
-      id: 1,
-    },
-    {
-      title: "state",
-      value: "California",
-      id: 2,
-    },
-    {
-      title: "country",
-      value: "United States",
-      id: 3,
-    },
-    {
-      title: "zip",
-      value: "94115",
-      id: 4,
-    },
-    {
-      title: "beds",
-      value: 5,
-      id: 5,
-    },
-    {
-      title: "baths",
-      value: 3,
-      id: 6,
-    },
-    {
-      title: "sqft",
-      value: 3400,
-      id: 7,
-    },
-    {
-      title: "roof area (ft)",
-      value: 900,
-      id: 8,
-    },
-    {
-      title: "heating",
-      value: "Forced air, natural gas",
-      id: 9,
-    },
-    {
-      title: "AC",
-      value: "3 electric compressors, SEER 14",
-      id: 10,
-    },
-    {
-      title: "year built",
-      value: 1885,
-      id: 11,
-    },
-    {
-      title: "last remodel",
-      value: 2021,
-      id: 12,
-    },
-  ]);
+  const [homeFacts, setHomeFacts] = useState([]);
+
+  // get the first homes data from the API to display
+  useEffect(() => {
+    const fetchHomeData = async () => {
+      try {
+        const response = await fetch('/api/first-home');
+        const data = await response.json();
+        const newHomeFacts = [];
+        Object.keys(data).forEach((key, index) => {
+          if (key !== "id") {
+            newHomeFacts.push({
+              title: key,
+              value: data[key],
+              id: index
+            });
+          }
+        });
+        setHomeFacts(newHomeFacts);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+    fetchHomeData();
+  }, []);
 
   async function handleSubmit(event) {
     event.preventDefault();
