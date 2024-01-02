@@ -6,6 +6,7 @@ import styles from './page.module.css';
 import Navbar from './components/Navbar';
 import Chat from './components/Chat';
 import HomeFacts from './components/HomeFacts';
+import AuthPage from './components/AuthPage';
 
 export default function Home() {
   // set state vars
@@ -15,6 +16,7 @@ export default function Home() {
   const [homeFacts, setHomeFacts] = useState([]);
   const [homeList, setHomeList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   // get the first homes data from the API to display
   useEffect(() => {
@@ -106,19 +108,20 @@ export default function Home() {
         onSelectAddress={onSelectAddress}
         homeList={homeList}
       />
+      {!isLoggedIn && <AuthPage />}
       <div className={styles.container}>
         <div className={styles.leftColumn}>
-          <Chat
+          {isLoggedIn && <Chat
             handleSubmit={handleSubmit}
             questionInput={questionInput}
             setQuestionInput={setQuestionInput}
             lastQuestion={lastQuestion}
             result={result}
             isLoading={isLoading}
-          />
+          />}
         </div>
         <div className={styles.rightColumn}>
-          <HomeFacts homeFacts={homeFacts} />
+          {isLoggedIn && <HomeFacts homeFacts={homeFacts} />}
         </div>
       </div>
     </main>

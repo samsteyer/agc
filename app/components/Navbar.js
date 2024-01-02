@@ -23,7 +23,7 @@ export default function Navbar({address, onSelectAddress, homeList}) {
             />
           </Typography>
           <Typography variant="h6" component="div" className={styles.navItem}>
-            Login
+            Logout
           </Typography>
         </Toolbar>
       </AppBar>

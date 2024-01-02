@@ -30,7 +30,7 @@ export default function HomeSelector({address, onSelectAddress, homeList}) {
             '&.Mui-focused .MuiOutlinedInput-notchedOutline': { borderColor: 'white' }
           }}
         >
-          {homeList.map((home) => (
+          {homeList && homeList.map((home) => (
             <MenuItem value={home.id} className={styles.menuItem}>{home.address}</MenuItem>
           ))}
         </Select>
