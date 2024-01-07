@@ -75,17 +75,8 @@ export default function Home() {
   const onSelectAddress = async (homeId) => {
     try {
       const response = await fetch('/api/get-home/' + homeId);
-      const data = await response.json();
-      const newHomeFacts = [];
-      Object.keys(data).forEach((key, index) => {
-        if (key !== "id") {
-          newHomeFacts.push({
-            title: key,
-            value: data[key],
-          });
-        }
-        });
-        setHomeFacts(newHomeFacts);
+      const newHomeFacts = await response.json();
+      setHomeFacts(newHomeFacts);
     } catch (error) {
       console.error('Error fetching data:', error);
       alert(error.message);
