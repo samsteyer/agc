@@ -1,13 +1,40 @@
 .facts {
   border-radius: 1rem;
-  background: #eee;
-  line-height: 1.5;
-  margin: 1rem 0;
+  background: #f4f9f4; /* Light green shade */
+  line-height: 1.4;
+  margin: 1rem auto;
   padding: 1rem;
+  max-width: 600px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  color: #333;
+  font-family: 'Roboto', sans-serif; /* Roboto font for modern look */
 }
-@media (max-width: 600PX) {
+
+.address {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: #205538;
+  font-weight: 700; /* Making the address bolder */
+}
+
+.factTitle {
+  font-size: 1.1rem;
+  margin-top: 0.8rem;
+  color: #317256;
+  font-weight: 700; /* Bold for titles */
+}
+
+.HVAC {
+  background-color: #e0ece4;
+  border-radius: 0.5rem;
+  padding: 0.8rem;
+  margin-top: 1rem;
+}
+
+@media (max-width: 600px) {
   .facts {
     border-radius: 0.5rem;
-    margin: 0;
+    margin: 1rem;
+    padding: 0.8rem;
   }
 }

@@ -23,16 +23,7 @@ export default function Home() {
     const fetchHomeData = async () => {
       try {
         const response = await fetch('/api/first-home');
-        const data = await response.json();
-        const newHomeFacts = [];
-        Object.keys(data).forEach((key, index) => {
-          if (key !== "id") {
-            newHomeFacts.push({
-              title: key,
-              value: data[key],
-            });
-          }
-        });
+        const newHomeFacts = await response.json();
         setHomeFacts(newHomeFacts);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -111,7 +102,7 @@ export default function Home() {
       {!isLoggedIn && <AuthPage />}
       <div className={styles.container}>
         <div className={styles.leftColumn}>
-          {isLoggedIn && <Chat
+          {!isLoggedIn && <Chat
             handleSubmit={handleSubmit}
             questionInput={questionInput}
             setQuestionInput={setQuestionInput}
@@ -121,7 +112,7 @@ export default function Home() {
           />}
         </div>
         <div className={styles.rightColumn}>
-          {isLoggedIn && <HomeFacts homeFacts={homeFacts} />}
+          {!isLoggedIn && <HomeFacts homeFacts={homeFacts} />}
         </div>
       </div>
     </main>
