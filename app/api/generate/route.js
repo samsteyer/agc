@@ -1,29 +1,19 @@
+import { NextResponse } from 'next/server';
 import { OpenAI } from "openai";
 
 const openai = new OpenAI({apiKey: process.env.OPENAI_API_KEY,});
 
 
-export default async function (req, res) {
-  console.log('Preparing to ping OpenAI with the following data:');
-  console.log(req.body);
+export async function POST(request) {
+  const req = await request.json();
   if (!openai.apiKey) {
-    res.status(500).json({
-      error: {
-        message: "OpenAI API key not configured, please follow instructions in README.md",
-      }
-    });
-    return;
+    return NextResponse.json({ error: 'OpenAI API key not configured, please follow instructions in README.md', }, { status: 500 });
   }
 
-  const question = req.body.question || '';
-  const homeFacts = req.body.homeFacts || '{}';
+  const question = req.question || '';
+  const homeFacts = req.homeFacts || '{}';
   if (question.trim().length === 0) {
-    res.status(400).json({
-      error: {
-        message: "Please enter a question",
-      }
-    });
-    return;
+    return NextResponse.json({ error: 'Please enter a question', }, { status: 400 });
   }
 
   try {
@@ -32,19 +22,16 @@ export default async function (req, res) {
       model: 'gpt-4',
     });
 
-    res.status(200).json({ result: chatCompletion.choices[0].message.content });
+    return NextResponse.json({ result: chatCompletion.choices[0].message.content });
   } catch(error) {
     // Consider adjusting the error handling logic for your use case
     if (error.response) {
       console.error(error.response.status, error.response.data);
       res.status(error.response.status).json(error.response.data);
+      return NextResponse.json(error.response.data, { status: error.response.status });
     } else {
       console.error(`Error with OpenAI API request: ${error.message}`);
-      res.status(500).json({
-        error: {
-          message: 'An error occurred during your request.',
-        }
-      });
+      return NextResponse.json({ error: 'An error occurred during your request.', }, { status: 500 });
     }
   }
 }
