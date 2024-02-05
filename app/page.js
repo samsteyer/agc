@@ -7,6 +7,11 @@ import Navbar from './components/Navbar';
 import Chat from './components/Chat';
 import HomeFacts from './components/HomeFacts';
 import AuthPage from './components/AuthPage';
+import UserIcon from './components/UserIcon';
+
+import { useSession } from 'next-auth/react';
+
+
 
 export default function Home() {
   // set state vars
@@ -16,10 +21,13 @@ export default function Home() {
   const [homeFacts, setHomeFacts] = useState([]);
   const [homeList, setHomeList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const { data: session, status } = useSession();
+  const isLoggedIn = status === 'authenticated';
 
   // get the first homes data from the API to display
   useEffect(() => {
+
     const fetchHomeData = async () => {
       try {
         const response = await fetch('/api/first-home');
@@ -93,7 +101,7 @@ export default function Home() {
       {!isLoggedIn && <AuthPage />}
       <div className={styles.container}>
         <div className={styles.leftColumn}>
-          {!isLoggedIn && <Chat
+          {isLoggedIn && <Chat
             handleSubmit={handleSubmit}
             questionInput={questionInput}
             setQuestionInput={setQuestionInput}
@@ -103,7 +111,7 @@ export default function Home() {
           />}
         </div>
         <div className={styles.rightColumn}>
-          {!isLoggedIn && <HomeFacts homeFacts={homeFacts} />}
+          {isLoggedIn && <HomeFacts homeFacts={homeFacts} />}
         </div>
       </div>
     </main>

@@ -6,7 +6,14 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 
+import { signOut } from 'next-auth/react';
+
+
 export default function Navbar({address, onSelectAddress, homeList}) {
+  const handleLogout = () => {
+    signOut();
+  };
+
   return (
     <Box className={styles.navBox}>
       <AppBar position="static">
@@ -22,7 +29,7 @@ export default function Navbar({address, onSelectAddress, homeList}) {
               homeList={homeList}
             />
           </Typography>
-          <Typography variant="h6" component="div" className={styles.navItem}>
+          <Typography onClick={handleLogout} variant="h6" component="div" className={styles.navItem}>
             Logout
           </Typography>
         </Toolbar>
