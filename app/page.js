@@ -93,11 +93,11 @@ export default function Home() {
 
   return (
     <main className={styles.main}>
-      <Navbar 
+    {isLoggedIn && <Navbar 
         address={homeFacts[0] ? homeFacts[0].value : ""}
         onSelectAddress={onSelectAddress}
         homeList={homeList}
-      />
+      />}
       {!isLoggedIn && <AuthPage />}
       <div className={styles.container}>
         <div className={styles.leftColumn}>
