@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react';
+import NewHomeButton from './components/NewHomeButton';
 import Image from 'next/image';
 import styles from './page.module.css';
 import Navbar from './components/Navbar';
@@ -8,6 +9,8 @@ import Chat from './components/Chat';
 import HomeFacts from './components/HomeFacts';
 import AuthPage from './components/AuthPage';
 import UserIcon from './components/UserIcon';
+import Modal from './components/Modal';
+import NewHome from './components/NewHome';
 
 import { useSession } from 'next-auth/react';
 
@@ -21,6 +24,7 @@ export default function Home() {
   const [homeFacts, setHomeFacts] = useState([]);
   const [homeList, setHomeList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const { data: session, status } = useSession();
   const isLoggedIn = status === 'authenticated';
@@ -90,6 +94,13 @@ export default function Home() {
       alert(error.message);
     }
   };
+  const handleNewHome = async function() {
+    console.log('Pull up a modal with a new home form');
+    setIsModalOpen(true);
+  };
+  const handleModalClose = async function() {
+    setIsModalOpen(false);
+  }
 
   return (
     <main className={styles.main}>
@@ -109,10 +120,14 @@ export default function Home() {
             result={result}
             isLoading={isLoading}
           />}
+          {isLoggedIn && <NewHomeButton handleClick={handleNewHome} />}
         </div>
         <div className={styles.rightColumn}>
           {isLoggedIn && <HomeFacts homeFacts={homeFacts} />}
         </div>
+        <Modal isOpen={isModalOpen} onClose={handleModalClose}>
+          <NewHome />
+        </Modal>
       </div>
     </main>
   )
